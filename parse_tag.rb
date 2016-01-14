@@ -2,37 +2,43 @@
 #parse into hash or struct (regex)
 #likely multiple regex's 
 
+ParsedStringStruct = Struct.new(:type,:classes,:id,:name,:src,:title)
+
 def parse_tag(string)
   #type
+
+  parsed_string = ParsedStringStruct.new
+
   regex = /<([a-zA-Z]+)/
   type = string.match(regex)
-  puts type[1] if type
+  parsed_string.type = type[1] if type
 
   #class
   regex =/class='(.*?)'/
   classes = string.match(regex)
-  puts classes[1] if classes
+  parsed_string.classes = classes[1] if classes
 
   #id
   regex = /id='(.*?)'/
   id = string.match(regex)
-  puts id[1] if id
+  parsed_string.id = id[1] if id
 
   #name
   regex = /name='(.*?)'/
   name = string.match(regex)
-  puts name[1] if name
+  parsed_string.name = name[1] if name
 
   #title
   regex = /title='(.*?)'/
   title = string.match(regex)
-  puts title[1] if title
+  parsed_string.title = title[1] if title
 
   #src
   regex = /src='(.*?)'/
   src = string.match(regex)
-  puts src[1] if src
+  parsed_string.src = src[1] if src
 
+  puts "Parsed String is #{parsed_string}"
 end
 
 parse_tag("<p class='foo bar' id='baz'>")
