@@ -4,50 +4,53 @@
 
 ParsedStringStruct = Struct.new(:type,:classes,:id,:name,:src,:title)
 
-def parse_tag(string)
-  #type
+class ParseTag
 
-  parsed_string = ParsedStringStruct.new
+  def parse_tag(string)
+    #type
 
-  regex = /<([a-zA-Z]+)/
-  type = string.match(regex)
-  parsed_string.type = type[1] if type
+    parsed_string = ParsedStringStruct.new
 
-  #class
-  regex =/class='(.*?)'/
-  classes = string.match(regex)
-  parsed_string.classes = classes[1] if classes
+    regex = /<([a-zA-Z]+)/
+    type = string.match(regex)
+    parsed_string.type = type[1] if type
 
-  #id
-  regex = /id='(.*?)'/
-  id = string.match(regex)
-  parsed_string.id = id[1] if id
+    #class
+    regex =/class='(.*?)'/
+    classes = string.match(regex)
+    parsed_string.classes = classes[1] if classes
 
-  #name
-  regex = /name='(.*?)'/
-  name = string.match(regex)
-  parsed_string.name = name[1] if name
+    #id
+    regex = /id='(.*?)'/
+    id = string.match(regex)
+    parsed_string.id = id[1] if id
 
-  #title
-  regex = /title='(.*?)'/
-  title = string.match(regex)
-  parsed_string.title = title[1] if title
+    #name
+    regex = /name='(.*?)'/
+    name = string.match(regex)
+    parsed_string.name = name[1] if name
 
-  #src
-  regex = /src='(.*?)'/
-  src = string.match(regex)
-  parsed_string.src = src[1] if src
+    #title
+    regex = /title='(.*?)'/
+    title = string.match(regex)
+    parsed_string.title = title[1] if title
 
-  puts "Parsed String is #{parsed_string}"
+    #src
+    regex = /src='(.*?)'/
+    src = string.match(regex)
+    parsed_string.src = src[1] if src
+
+    puts "Parsed String is #{parsed_string}"
+  end
 end
 
-parse_tag("<p class='foo bar' id='baz'>")
+# parse_tag("<p class='foo bar' id='baz'>")
 
-parse_tag("<p class='foo bar' id='baz' name='fozzie'>")
+# parse_tag("<p class='foo bar' id='baz' name='fozzie'>")
 
-parse_tag("<div id='bim'>")
+# parse_tag("<div id='bim'>")
 
-parse_tag("<img src='http://www.example.com' title='funny things'>")
+# parse_tag("<img src='http://www.example.com' title='funny things'>")
 
 
 #parsed_string = Struct.new(:type,:class,:id,:name)
