@@ -7,10 +7,11 @@ ParsedStringStruct = Struct.new(:type,:classes,:id,:name,:src,:title)
 class ParseTag
 
   def parse_tag(string)
-    #type
+    
 
     parsed_string = ParsedStringStruct.new
 
+    #type
     regex = /<([a-zA-Z]+)/
     type = string.match(regex)
     parsed_string.type = type[1] if type
@@ -51,6 +52,8 @@ end
 # parse_tag("<div id='bim'>")
 
 # parse_tag("<img src='http://www.example.com' title='funny things'>")
+html = "<div>  div text before  <p>    p text  </p>  <div>    more div text  </div>  div text after</div>"
+
 
 
 #parsed_string = Struct.new(:type,:class,:id,:name)
